@@ -11,13 +11,11 @@ def get_team_ids():
     return all_teams
 
 def get_active_player_ids():
-    all_nba_players = players.get_players()
-    all_active_players = {}
+    all_active_players = players.get_active_players()
+    active_players_ids = {}
 
-    for player in all_nba_players:
-        if player['is_active'] == False:
-            continue # Skip all non-active players
+    for player in all_active_players:
         player_id = player['id']
         player_name = player['full_name']
-        all_active_players[player_name] = player_id
-    return all_active_players
+        active_players_ids[player_name] = player_id
+    return active_players_ids
