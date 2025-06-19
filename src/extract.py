@@ -1,6 +1,6 @@
 from nba_api.stats.static import teams, players
 
-def get_team_ids():
+def get_team_ids() -> dict:
     all_nba_teams = teams.get_teams()
     all_teams = {}
 
@@ -10,7 +10,7 @@ def get_team_ids():
         all_teams[team_name] = team_id
     return all_teams
 
-def get_active_player_ids():
+def get_active_player_ids() -> dict:
     all_active_players = players.get_active_players()
     active_players_ids = {}
 
@@ -20,7 +20,7 @@ def get_active_player_ids():
         active_players_ids[player_name] = player_id
     return active_players_ids
 
-def get_inactive_player_ids():
+def get_inactive_player_ids() -> dict:
     all_inactive_players = players.get_inactive_players()
     inactive_players_ids = {}
 
