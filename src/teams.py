@@ -3,7 +3,7 @@ from nba_api.stats.static import teams
 from dataclasses import dataclass, field
 
 @dataclass
-class Team:
+class TeamID:
     full_team_name: str
     team_id: int = field(init=False)
 
@@ -23,13 +23,3 @@ class Team:
         except KeyError as k:
             print(f"KeyError: {k}")
             self.team_id = None
-
-    def get_roster(self, season: int) -> dict:
-        players_and_coaches = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=season).get_normalized_dict()
-        team_roster = players_and_coaches["CommonTeamRoster"]
-        players = {}
-        for player_dict in team_roster:
-            player_name = player_dict['PLAYER']
-            player_id = player_dict['PLAYER_ID']
-            players[player_name] = player_id
-        return players
