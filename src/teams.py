@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 @dataclass
 class Team:
-    team_name: str
+    full_team_name: str
     season: int
     team_id: int = field(init=False)
 
@@ -20,7 +20,7 @@ class Team:
     def __post_init__(self):
         all_team_ids = self.get_all_team_ids()
         try:
-            self.team_id = all_team_ids[self.team_name.strip().title()]
+            self.team_id = all_team_ids[self.full_team_name.strip().title()]
         except KeyError as k:
             print(f"KeyError: {k}")
             self.team_id = None
