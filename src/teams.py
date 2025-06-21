@@ -5,7 +5,6 @@ from dataclasses import dataclass, field
 @dataclass
 class Team:
     full_team_name: str
-    season: int
     team_id: int = field(init=False)
 
     def get_all_team_ids(self) -> dict:
@@ -25,8 +24,8 @@ class Team:
             print(f"KeyError: {k}")
             self.team_id = None
 
-    def get_roster(self):
-        players_and_coaches = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=self.season).get_normalized_dict()
+    def get_roster(self, season):
+        players_and_coaches = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=season).get_normalized_dict()
         team_roster = players_and_coaches["CommonTeamRoster"]
         players = {}
         for player_dict in team_roster:
