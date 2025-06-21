@@ -24,7 +24,7 @@ class Team:
             print(f"KeyError: {k}")
             self.team_id = None
 
-    def get_roster(self, season):
+    def get_roster(self, season: int) -> dict:
         players_and_coaches = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=season).get_normalized_dict()
         team_roster = players_and_coaches["CommonTeamRoster"]
         players = {}
