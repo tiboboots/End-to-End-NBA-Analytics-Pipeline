@@ -26,13 +26,8 @@ class Team:
             self.team_id = None
 
     def get_roster(self):
-        roster_dirty = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=self.season).get_normalized_dict()
-        team_roster = None
-        for type, roster in roster_dirty.items():
-            if type != 'CommonTeamRoster': # Turn into comprehension
-                continue
-            else:
-                team_roster = roster
+        players_and_coaches = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=self.season).get_normalized_dict()
+        team_roster = players_and_coaches["CommonTeamRoster"]
         return team_roster
     
     def get_players(self):
@@ -43,17 +38,3 @@ class Team:
             player_id = player_dict['PLAYER_ID']
             players[player_name] = player_id
         return players
-
-
-
-        
-
-
-
-
-            
-
-        
-
-
-
