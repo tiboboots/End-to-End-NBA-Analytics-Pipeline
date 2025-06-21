@@ -28,10 +28,6 @@ class Team:
     def get_roster(self):
         players_and_coaches = commonteamroster.CommonTeamRoster(team_id=self.team_id, season=self.season).get_normalized_dict()
         team_roster = players_and_coaches["CommonTeamRoster"]
-        return team_roster
-    
-    def get_players(self):
-        team_roster = self.get_roster()
         players = {}
         for player_dict in team_roster:
             player_name = player_dict['PLAYER']
