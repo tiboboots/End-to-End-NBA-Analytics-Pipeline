@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from nba_api.stats.static import players
 
 @dataclass
-class Player:
+class PlayerID:
     player_full_name: str
     player_id: int = field(init=False)
 
