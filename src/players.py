@@ -3,7 +3,7 @@ from nba_api.stats.static import players
 import nba_api.stats.endpoints as ep
 
 @dataclass
-class PlayerID:
+class Player:
     player_full_name: str
     player_id: int = field(init=False)
 
