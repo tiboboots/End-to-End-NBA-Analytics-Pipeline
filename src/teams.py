@@ -31,3 +31,7 @@ class Team:
     def team_year_by_year_stats(self, per_mode: str = "PerGame") -> ep.TeamYearByYearStats:
         team_stats = ep.TeamYearByYearStats(team_id=self.team_id, per_mode_simple=per_mode)
         return team_stats
+    
+    def team_game_stats(self, season: str, season_type: str = "Regular Season") -> ep.TeamGameLog:
+        game_stats = ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type)
+        return game_stats
