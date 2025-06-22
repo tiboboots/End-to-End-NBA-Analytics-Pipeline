@@ -25,17 +25,13 @@ class Team:
             self.team_id = None
 
     def team_roster(self, season: int) -> ep.CommonTeamRoster:
-        roster = ep.CommonTeamRoster(team_id= self.team_id, season=season)
-        return roster
+        return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
     def team_year_by_year_stats(self, per_mode: str = "PerGame") -> ep.TeamYearByYearStats:
-        team_stats = ep.TeamYearByYearStats(team_id=self.team_id, per_mode_simple=per_mode)
-        return team_stats
+        return ep.TeamYearByYearStats(team_id=self.team_id, per_mode_simple=per_mode)
     
     def team_game_stats(self, season: str, season_type: str = "Regular Season") -> ep.TeamGameLog:
-        game_stats = ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type)
-        return game_stats
+        return ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type)
     
     def team_diff_lineups(self, season: str, season_type: str = "Regular Season") -> ep.TeamDashLineups:
-        team_lineup_data = ep.TeamDashLineups(team_id=self.team_id, season=season, season_type_all_star=season_type)
-        return team_lineup_data
+        return ep.TeamDashLineups(team_id=self.team_id, season=season, season_type_all_star=season_type)
