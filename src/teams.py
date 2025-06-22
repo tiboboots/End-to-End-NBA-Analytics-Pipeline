@@ -3,7 +3,7 @@ from nba_api.stats.static import teams
 from dataclasses import dataclass, field
 
 @dataclass
-class TeamID:
+class Team:
     full_team_name: str
     team_id: int = field(init=False)
 
