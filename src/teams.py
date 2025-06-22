@@ -30,8 +30,8 @@ class Team:
     def team_year_by_year_stats(self, per_mode: str = "PerGame", season_type: str = "Regular Season") -> ep.TeamYearByYearStats:
         return ep.TeamYearByYearStats(team_id=self.team_id, per_mode_simple=per_mode, season_type_all_star=season_type)
     
-    def team_game_stats(self, season: str, season_type: str = "Regular Season") -> ep.TeamGameLog:
-        return ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type)
+    def team_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs) -> ep.TeamGameLog:
+        return ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type, **kwargs)
     
-    def team_diff_lineups(self, season: str, season_type: str = "Regular Season") -> ep.TeamDashLineups:
-        return ep.TeamDashLineups(team_id=self.team_id, season=season, season_type_all_star=season_type)
+    def team_diff_lineups(self, season: str, season_type: str = "Regular Season", **kwargs) -> ep.TeamDashLineups:
+        return ep.TeamDashLineups(team_id=self.team_id, season=season, season_type_all_star=season_type, **kwargs)
