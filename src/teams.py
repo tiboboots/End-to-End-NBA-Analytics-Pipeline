@@ -27,3 +27,7 @@ class Team:
     def team_roster(self, season: int) -> ep.CommonTeamRoster:
         roster = ep.CommonTeamRoster(team_id= self.team_id, season=season)
         return roster
+    
+    def team_year_by_year_stats(self, per_mode: str = "PerGame") -> ep.TeamYearByYearStats:
+        team_stats = ep.TeamYearByYearStats(team_id=self.team_id, per_mode_simple=per_mode)
+        return team_stats
