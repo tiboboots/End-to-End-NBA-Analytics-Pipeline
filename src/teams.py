@@ -35,3 +35,7 @@ class Team:
     def team_game_stats(self, season: str, season_type: str = "Regular Season") -> ep.TeamGameLog:
         game_stats = ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type)
         return game_stats
+    
+    def team_diff_lineups(self, season: str, season_type: str = "Regular Season") -> ep.TeamDashLineups:
+        team_lineup_data = ep.TeamDashLineups(team_id=self.team_id, season=season, season_type_all_star=season_type)
+        return team_lineup_data
