@@ -27,3 +27,7 @@ class Player:
     def player_career_stats(self, per_mode: str = "PerGame") -> ep.PlayerCareerStats:
         player_stats = ep.PlayerCareerStats(player_id=self.player_id, per_mode36=per_mode)
         return player_stats
+    
+    def player_game_stats(self, season: str, season_type: str = "Regular Season"):
+        game_stats = ep.PlayerGameLog(player_id=self.player_id, season=season, season_type_all_star=season_type)
+        return game_stats
