@@ -23,3 +23,7 @@ class PlayerID:
         except KeyError as k:
             print(f"KeyError: {k}")
             self.player_id = None
+
+    def player_career_stats(self, per_mode: str = "PerGame") -> ep.playercareerstats.PlayerCareerStats:
+        player_stats = ep.playercareerstats.PlayerCareerStats(player_id=self.player_id, per_mode36=per_mode)
+        return player_stats
