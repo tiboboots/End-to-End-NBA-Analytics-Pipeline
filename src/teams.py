@@ -23,3 +23,7 @@ class TeamID:
         except KeyError as k:
             print(f"KeyError: {k}")
             self.team_id = None
+
+    def team_roster(self, season: int) -> ep.CommonTeamRoster:
+        roster = ep.CommonTeamRoster(team_id= self.team_id, season=season)
+        return roster
