@@ -2,14 +2,12 @@ import nba_api.stats.endpoints as ep
 
 class NBA:
     @staticmethod
-    def league_player_stats(season: str, per_mode_detailed: str = "Totals", 
-                            season_type_all_star: str = "Regular Season", **kwargs):
-        return ep.LeagueDashPlayerStats(season=season, season_type_all_star=season_type_all_star, 
-                                        per_mode_detailed= per_mode_detailed, **kwargs)
+    def league_player_stats(season: str, season_type_all_star: str = "Regular Season", **kwargs):
+        return ep.LeagueDashPlayerStats(season=season, season_type_all_star=season_type_all_star, **kwargs)
     
     @staticmethod
-    def league_team_stats(**kwargs):
-        return ep.LeagueDashTeamStats(**kwargs)
+    def league_team_stats(season: str, season_type_all_star: str = "Regular Season", **kwargs):
+        return ep.LeagueDashTeamStats(season=season, season_segment_nullable=season_type_all_star, **kwargs)
     
     @staticmethod
     def league_team_shot_location_stats(**kwargs):
