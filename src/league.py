@@ -2,8 +2,10 @@ import nba_api.stats.endpoints as ep
 
 class NBA:
     @staticmethod
-    def league_player_stats(**kwargs):
-        return ep.LeagueDashPlayerStats(**kwargs)
+    def league_player_stats(season: str, per_mode_detailed: str = "Totals", 
+                            season_type_all_star: str = "Regular Season", **kwargs):
+        return ep.LeagueDashPlayerStats(season=season, season_type_all_star=season_type_all_star, 
+                                        per_mode_detailed= per_mode_detailed, **kwargs)
     
     @staticmethod
     def league_team_stats(**kwargs):
