@@ -30,5 +30,8 @@ class NBA:
         return ep.LeagueStandingsV3(season=season)
     
     @staticmethod
-    def league_clutch_player_stats(season: str, season_type_all_star: str="Regular Season", **kwargs):
-        return ep.LeagueDashPlayerClutch(season=season, season_type_all_star=season_type_all_star, **kwargs)
+    def league_clutch_player_stats(season: str, ahead_behind: str = "Behind or Tied",
+                                   clutch_time: str = "Last 5 Minutes", season_type_all_star: str="Regular Season", 
+                                   **kwargs):
+        return ep.LeagueDashPlayerClutch(season=season, ahead_behind=ahead_behind, clutch_time=clutch_time,
+                                         season_type_all_star=season_type_all_star, **kwargs)
