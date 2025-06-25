@@ -23,9 +23,6 @@ class Player:
         except KeyError as k:
             print(f"KeyError: {k}")
             self.player_id = None
-
-    def player_career_stats(self, per_mode: str = "PerGame"):
-        return ep.PlayerCareerStats(player_id=self.player_id, per_mode36=per_mode)
     
     def player_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
         return ep.PlayerGameLog(player_id=self.player_id, season=season, season_type_all_star=season_type, **kwargs)
