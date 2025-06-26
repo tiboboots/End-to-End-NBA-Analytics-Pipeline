@@ -25,7 +25,11 @@ class Team:
             raise KeyError(f"Team ID could not be located using team name: {self.full_team_name}")
 
     def team_roster(self, season: str):
-        return ep.CommonTeamRoster(team_id= self.team_id, season=season)
+        if not season.isdigit() or len(season) != 4:
+            print(f"Invalid season format: {season}. Should be YYYY")
+            return {}
+        else:
+            return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
     def team_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
         return ep.TeamGameLog(team_id=self.team_id, season=season, 
