@@ -23,22 +23,36 @@ class Team:
             self.team_id = all_team_ids[self.full_team_name]
         else:
             raise KeyError(f"Team ID could not be located using team name: {self.full_team_name}")
-
-    def team_roster(self, season: str):
+        
+    @staticmethod
+    def _validate_season(season):
         if not season.isdigit() or len(season) != 4:
             print(f"Invalid season format: {season}. Should be YYYY")
+            return False
+        else:
+            return True
+        
+    @staticmethod 
+    def _validate_season_type(season_type):
+        season_type = season_type.strip().title()
+        valid_season_types = {"Regular Season", "Playoffs"}
+        if season_type not in valid_season_types:
+            print(f"Invalid season type: {season_type}. Should be one of: {valid_season_types}")
+            return False
+        else:
+            return True
+
+    def team_roster(self, season: str):
+        valid_season = self._validate_season(season)
+        if not valid_season:
             return None
         else:
             return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
     def team_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
-        season_type = season_type.strip().title()
-        valid_season_types = {"Regular Season", "Playoffs"}
-        if season_type not in valid_season_types:
-            print(f"Invalid season type: {season}. Should be one of: {valid_season_types}")
-            return None
-        if not season.isdigit() or len(season) != 4:
-            print(f"Invalid season format: {season}. Should be YYYY.")
+        valid_season = self._validate_season(season)
+        valid_season_type = self._validate_season_type(season_type)
+        if not valid_season or not valid_season_type:
             return None
         else:
             return ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type, **kwargs)
