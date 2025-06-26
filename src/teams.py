@@ -19,7 +19,10 @@ class Team:
     def __post_init__(self):
         self.full_team_name = self.full_team_name.strip().title()
         all_team_ids = self.get_all_team_ids()
-        self.team_id = all_team_ids[self.full_team_name]
+        if self.full_team_name in all_team_ids:
+            self.team_id = all_team_ids[self.full_team_name]
+        else:
+            raise KeyError(f"Team ID could not be located using team name: {self.full_team_name}")
 
     def team_roster(self, season: int):
         return ep.CommonTeamRoster(team_id= self.team_id, season=season)
