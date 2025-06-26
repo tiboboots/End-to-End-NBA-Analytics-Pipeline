@@ -25,7 +25,16 @@ class Team:
             self.team_id = None
 
     def team_roster(self, season: int):
-        return ep.CommonTeamRoster(team_id= self.team_id, season=season)
+        if self.team_id is None:
+            print("Team ID is not set")
+            return None
+        else:
+            return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
     def team_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
-        return ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type, **kwargs)
+        if self.team_id is None:
+            print("Team ID is not set")
+            return None
+        else:
+            return ep.TeamGameLog(team_id=self.team_id, season=season, 
+                                  season_type_all_star=season_type, **kwargs)
