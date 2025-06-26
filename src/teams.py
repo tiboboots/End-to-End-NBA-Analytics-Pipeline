@@ -24,7 +24,7 @@ class Team:
         else:
             raise KeyError(f"Team ID could not be located using team name: {self.full_team_name}")
 
-    def team_roster(self, season: int):
+    def team_roster(self, season: str):
         return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
     def team_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
