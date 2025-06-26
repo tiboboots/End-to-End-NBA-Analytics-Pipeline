@@ -32,5 +32,13 @@ class Team:
             return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
     def team_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
-        return ep.TeamGameLog(team_id=self.team_id, season=season, 
-                                season_type_all_star=season_type, **kwargs)
+        season_type = season_type.strip().title()
+        valid_season_types = {"Regular Season", "Playoffs"}
+        if season_type not in valid_season_types:
+            print(f"Invalid season type: {season}. Should be one of: {valid_season_types}")
+            return None
+        if not season.isdigit() or len(season) != 4:
+            print(f"Invalid season format: {season}. Should be YYYY.")
+            return None
+        else:
+            return ep.TeamGameLog(team_id=self.team_id, season=season, season_type_all_star=season_type, **kwargs)
