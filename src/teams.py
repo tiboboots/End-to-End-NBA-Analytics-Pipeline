@@ -27,7 +27,7 @@ class Team:
     def team_roster(self, season: str):
         if not season.isdigit() or len(season) != 4:
             print(f"Invalid season format: {season}. Should be YYYY")
-            return {}
+            return None
         else:
             return ep.CommonTeamRoster(team_id= self.team_id, season=season)
     
