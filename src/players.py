@@ -25,4 +25,9 @@ class Player:
             self.player_id = None
     
     def player_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
-        return ep.PlayerGameLog(player_id=self.player_id, season=season, season_type_all_star=season_type, **kwargs)
+        if self.player_id is None:
+            print("Missing Player ID")
+            return None
+        else:
+            return ep.PlayerGameLog(player_id=self.player_id, season=season, 
+                                    season_type_all_star=season_type, **kwargs)
