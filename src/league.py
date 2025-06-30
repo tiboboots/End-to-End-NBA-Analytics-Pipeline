@@ -22,3 +22,15 @@ class NBA:
     
     def box_score(self, game_id: int):
         return ep.BoxScoreTraditionalV3(game_id=game_id)
+    
+    def box_score_misc(self, game_id: int):
+        return ep.BoxScoreMiscV3(game_id=game_id)
+    
+    def box_score_matchups(self, game_id: int):
+        return ep.BoxScoreMatchupsV3(game_id=game_id)
+    
+    def box_score_hustle(self, game_id: int):
+        return ep.BoxScoreHustleV2(game_id=game_id)
+    
+    def box_score_defense(self, game_id: int):
+        return ep.BoxScoreDefensiveV2(game_id=game_id)
