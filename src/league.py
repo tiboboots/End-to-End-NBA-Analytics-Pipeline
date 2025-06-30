@@ -13,3 +13,6 @@ class NBA:
     def league_player_shot_locations(self):
         return ep.LeagueDashPlayerShotLocations(season=self.season, 
                                                 season_type_all_star=self.season_type_all_star)
+    
+    def league_game_stats(self):
+        return ep.LeagueGameLog(season=self.season, season_type_all_star=self.season_type_all_star)
