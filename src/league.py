@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 @dataclass
 class NBA:
     season: str
-    season_type_all_star: str
+    season_type_all_star: str = "Regular Season"
 
     def __post_init__(self):
         self.season_type_all_star = self.season_type_all_star.strip().title()
