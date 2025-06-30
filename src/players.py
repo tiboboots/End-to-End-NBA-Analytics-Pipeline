@@ -24,6 +24,5 @@ class Player:
         else:
             raise KeyError(f"Could not retrieve player id for {self.player_full_name}")
     
-    def player_game_stats(self, season: str, season_type: str = "Regular Season", **kwargs):
-        return ep.PlayerGameLog(player_id=self.player_id, season=season, 
-                                season_type_all_star=season_type, **kwargs)
+    def player_game_stats(self, season: str, season_type_all_star: str = "Regular Season"):
+        return ep.PlayerGameLog(player_id=self.player_id, season=season, season_type_all_star=season_type_all_star)
