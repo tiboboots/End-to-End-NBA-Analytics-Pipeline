@@ -1,5 +1,5 @@
 import nba_api.stats.endpoints as ep
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class NBA:
@@ -20,17 +20,21 @@ class NBA:
     def league_game_stats(self):
         return ep.LeagueGameLog(season=self.season, season_type_all_star=self.season_type_all_star)
     
-    def box_score(self, game_id: int):
-        return ep.BoxScoreTraditionalV3(game_id=game_id)
+@dataclass
+class Game:
+    game_id: int = field(init=False)
+
+    def box_score(self):
+        return ep.BoxScoreTraditionalV3(game_id=self.game_id)
     
-    def box_score_misc(self, game_id: int):
-        return ep.BoxScoreMiscV3(game_id=game_id)
+    def box_score_misc(self):
+        return ep.BoxScoreMiscV3(game_id=self.game_id)
     
-    def box_score_matchups(self, game_id: int):
-        return ep.BoxScoreMatchupsV3(game_id=game_id)
+    def box_score_matchups(self):
+        return ep.BoxScoreMatchupsV3(game_id=self.game_id)
     
-    def box_score_hustle(self, game_id: int):
-        return ep.BoxScoreHustleV2(game_id=game_id)
+    def box_score_hustle(self):
+        return ep.BoxScoreHustleV2(game_id=self.game_id)
     
-    def box_score_defense(self, game_id: int):
-        return ep.BoxScoreDefensiveV2(game_id=game_id)
+    def box_score_defense(self):
+        return ep.BoxScoreDefensiveV2(game_id=self.game_id)
