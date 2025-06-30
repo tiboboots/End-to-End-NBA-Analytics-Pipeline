@@ -23,6 +23,11 @@ class NBA:
 @dataclass
 class Game:
     game_id: int = field(init=False)
+    game_date: str # YYYY-MM-DD
+    home_team_name_short: str
+    away_team_name_short: str
+    season: str
+    season_type_all_star: str = "Regular Season"
 
     def box_score(self):
         return ep.BoxScoreTraditionalV3(game_id=self.game_id)
