@@ -30,9 +30,17 @@ class Game:
     season: str
     season_type_all_star: str = "Regular Season"
 
-    def __post_init__(self):
-        self.home_team_name_short = self.home_team_name_short.strip().upper()
-        self.away_team_name_short = self.away_team_name_short.strip().upper()
+    def _validate_teams(self):
+        teams = [self.home_team_name_short, self.away_team_name_short]
+
+        if any(len(team_name) != 3 for team_name in teams):
+            raise ValueError(f"Team names must be 3 characters long")
+        
+        if any(type(team_name) != str for team_name in teams):
+            raise TypeError(f"Team name must be a string")
+        
+        self.home_team_name_short = "".join(self.home_team_name_short.split()).upper()
+        self.away_team_name_short = "".join(self.away_team_name_short.split()).upper()
 
     def game_finder(self):
         df = ep.LeagueGameLog(season=self.season, 
@@ -41,7 +49,7 @@ class Game:
         specific_game = df[df['MATCHUP'].str.contains(self.home_team_name_short) 
                             & df['MATCHUP'].str.contains(self.away_team_name_short)
                             & df['GAME_DATE'] == self.game_date]
-        
+    
         self.game_id = specific_game['GAME_ID']
     
     def box_score(self):
