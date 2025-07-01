@@ -38,9 +38,11 @@ class Game:
         df = ep.LeagueGameLog(season=self.season, 
                                      season_type_all_star=self.season_type_all_star).get_data_frames()[0]
 
-        filtered_games = df[df['MATCHUP'].str.contains(self.home_team_name_short) 
+        specific_game = df[df['MATCHUP'].str.contains(self.home_team_name_short) 
                             & df['MATCHUP'].str.contains(self.away_team_name_short)
                             & df['GAME_DATE'] == self.game_date]
+        
+        self.game_id = specific_game['GAME_ID']
     
     def box_score(self):
         return ep.BoxScoreTraditionalV3(game_id=self.game_id)
