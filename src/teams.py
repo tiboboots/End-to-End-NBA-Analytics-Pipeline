@@ -1,5 +1,4 @@
 import nba_api.stats.endpoints as ep
-from nba_api.stats.static import teams
 from dataclasses import dataclass, field
 
 @dataclass
