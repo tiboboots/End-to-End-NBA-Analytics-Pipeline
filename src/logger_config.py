@@ -12,11 +12,14 @@ def setup_logger():
                                        mode="a",
                                        encoding="utf-8")
     
-    formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}",
+    console_formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}",
                                   style="{", datefmt="%Y-%m-%d %H:%M")
     
-    file_handler.setFormatter(fmt=formatter)
-    console_handler.setFormatter(fmt=formatter)
+    file_formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}\n{exc_info}",
+                                  style="{", datefmt="%Y-%m-%d %H:%M")
+    
+    file_handler.setFormatter(fmt=file_formatter)
+    console_handler.setFormatter(fmt=console_formatter)
 
     logger.setLevel("DEBUG")
     console_handler.setLevel("WARNING")
