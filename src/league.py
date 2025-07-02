@@ -23,34 +23,9 @@ class NBA:
     
 @dataclass
 class Game:
-    game_id: int = field(init=False)
-    game_date: str = None # YYYY-MM-DD
-    home_team_name_short: str
-    away_team_name_short: str
     season: str
     season_type_all_star: str = "Regular Season"
-
-    def _validate_teams(self):
-        teams = [self.home_team_name_short, self.away_team_name_short]
-
-        if any(len(team_name) != 3 for team_name in teams):
-            raise ValueError(f"Team names must be 3 characters long")
-        
-        if any(type(team_name) != str for team_name in teams):
-            raise TypeError(f"Team name must be a string")
-        
-        self.home_team_name_short = "".join(self.home_team_name_short.split()).upper()
-        self.away_team_name_short = "".join(self.away_team_name_short.split()).upper()
-
-    def game_finder(self):
-        df = ep.LeagueGameLog(season=self.season, 
-                                     season_type_all_star=self.season_type_all_star).get_data_frames()[0]
-
-        specific_game = df[df['MATCHUP'].str.contains(self.home_team_name_short) 
-                            & df['MATCHUP'].str.contains(self.away_team_name_short)
-                            & df['GAME_DATE'] == self.game_date]
-    
-        self.game_id = specific_game['GAME_ID']
+    game_id: int 
     
     def box_score(self):
         return ep.BoxScoreTraditionalV3(game_id=self.game_id)
