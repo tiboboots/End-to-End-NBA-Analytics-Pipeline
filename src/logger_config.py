@@ -1,0 +1,28 @@
+import logging
+from pathlib import Path
+
+root_dir = Path(__file__).parent.parent
+log_file = root_dir / "logs.log"
+
+def setup_logger():
+    logger = logging.getLogger()
+
+    console_handler = logging.StreamHandler()
+    file_handler = logging.FileHandler(filename=log_file,
+                                       mode="a",
+                                       encoding="utf-8")
+    
+    formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}",
+                                  style="{", datefmt="%Y-%m-%d %H:%M")
+    
+    file_handler.setFormatter(fmt=formatter)
+    console_handler.setFormatter(fmt=formatter)
+
+    logger.setLevel("DEBUG")
+    console_handler.setLevel("WARNING")
+    file_handler.setLevel("DEBUG")
+    
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+
+    return logger
