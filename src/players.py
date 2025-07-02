@@ -4,7 +4,6 @@ import nba_api.stats.endpoints as ep
 
 @dataclass
 class Player:
-    player_full_name: str
     player_id: int
     season: str
     season_type_all_star: str

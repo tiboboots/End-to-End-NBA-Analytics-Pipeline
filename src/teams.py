@@ -4,7 +4,6 @@ from dataclasses import dataclass, field
 
 @dataclass
 class Team:
-    full_team_name: str
     team_id: int
 
     def team_roster(self, season: str):
