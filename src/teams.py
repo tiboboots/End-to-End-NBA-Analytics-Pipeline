@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 @dataclass
 class Team:
     full_team_name: str
-    team_id: int = field(init=False)
+    team_id: int
 
     def team_roster(self, season: str):
         return ep.CommonTeamRoster(team_id= self.team_id, season=season)
