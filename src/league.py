@@ -5,10 +5,7 @@ import pandas as pd
 @dataclass
 class NBA:
     season: str
-    season_type_all_star: str = "Regular Season"
-
-    def __post_init__(self):
-        self.season_type_all_star = self.season_type_all_star.strip().title()
+    season_type_all_star: str
         
     def league_team_shot_locations(self):
         return ep.LeagueDashTeamShotLocations(season=self.season, 
@@ -24,7 +21,7 @@ class NBA:
 @dataclass
 class Game:
     season: str
-    season_type_all_star: str = "Regular Season"
+    season_type_all_star: str
     game_id: int 
     
     def box_score(self):
