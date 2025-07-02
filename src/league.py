@@ -15,8 +15,9 @@ class NBA:
         return ep.LeagueDashPlayerShotLocations(season=self.season, 
                                                 season_type_all_star=self.season_type_all_star)
     
-    def league_game_stats(self):
-        return ep.LeagueGameLog(season=self.season, season_type_all_star=self.season_type_all_star)
+    def league_game_stats(self, player_or_team_abbreviation: str):
+        return ep.LeagueGameLog(season=self.season, season_type_all_star=self.season_type_all_star,
+                                player_or_team_abbreviation=player_or_team_abbreviation)
     
 @dataclass
 class Game:
