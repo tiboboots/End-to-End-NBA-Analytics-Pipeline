@@ -22,7 +22,7 @@ def extract_game_logs(seasons: list, player_or_team_abbreviation: str,
 
     return pd.concat(objs=dataframes, ignore_index=True)
 
-def extract_team_roster(seasons: list, team_id: int):
+def extract_team_roster(seasons: list, team_id: int) -> pd.DataFrame:
     dataframes = []
     try:
         for season in seasons:
