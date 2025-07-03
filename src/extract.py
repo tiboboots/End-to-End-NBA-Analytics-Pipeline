@@ -4,7 +4,7 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-def extract_player_games(seasons: list):
+def extract_player_games(seasons: list) -> pd.DataFrame:
     dataframes = []
     for season in seasons:
         try:
@@ -17,8 +17,7 @@ def extract_player_games(seasons: list):
             raise
     return pd.concat(objs=dataframes, ignore_index=True)
 
-
-def extract_team_games(seasons: list):
+def extract_team_games(seasons: list) -> pd.DataFrame:
     dataframes = []
     try:
         for season in seasons:
