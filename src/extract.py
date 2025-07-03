@@ -37,3 +37,27 @@ def extract_team_roster(seasons: list, team_id: int) -> pd.DataFrame:
         raise
     
     return pd.concat(objs=dataframes, ignore_index=True)
+
+def extract_shot_locations(seasons: list, player_or_team: str, season_type_all_star: str) -> pd.DataFrame:
+    player_or_team = player_or_team.lower()
+    dataframes = []
+    for season in seasons:
+        if player_or_team == "player":
+            league_player_shots = ep.LeagueDashPlayerShotLocations(season=season, 
+            season_type_all_star=season_type_all_star).get_normalized_dict()["LeagueDashPlayerShotLocations"]
+
+            df = pd.DataFrame(data=league_player_shots)
+            dataframes.append(df)
+        
+        elif player_or_team == "team":
+            league_team_shots = ep.LeagueDashTeamShotLocations(season=season,
+            season_type_all_star=season_type_all_star).get_normalized_dict()["LeagueDashTeamShotLocations"]
+
+            df = pd.DataFrame(data=league_team_shots)
+            dataframes.append(df)
+
+        else:
+            logger.error(f"Incorrect value for player_or_team parameter in extract_shot_locations", exc_info= True)
+            raise ValueError
+
+    return pd.concat(objs=dataframes, ignore_index=True)
