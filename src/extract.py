@@ -37,14 +37,14 @@ def extract_shot_locations(seasons: list, player_or_team: str, season_type_all_s
     for season in seasons:
         if player_or_team == "player":
             league_player_shots = ep.LeagueDashPlayerShotLocations(season=season, 
-            season_type_all_star=season_type_all_star).get_normalized_dict()["LeagueDashPlayerShotLocations"]
+            season_type_all_star=season_type_all_star).get_data_frames()[0]
 
             df = pd.DataFrame(data=league_player_shots)
             dataframes.append(df)
         
         elif player_or_team == "team":
             league_team_shots = ep.LeagueDashTeamShotLocations(season=season,
-            season_type_all_star=season_type_all_star).get_normalized_dict()["LeagueDashTeamShotLocations"]
+            season_type_all_star=season_type_all_star).get_data_frames()[0]
 
             df = pd.DataFrame(data=league_team_shots)
             dataframes.append(df)
