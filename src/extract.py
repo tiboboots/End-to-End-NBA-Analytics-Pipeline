@@ -31,7 +31,6 @@ def extract_team_roster(seasons: list, team_id: int) -> pd.DataFrame:
     return pd.concat(objs=dataframes, ignore_index=True)
 
 def extract_shot_locations(seasons: list, player_or_team: str, season_type_all_star: str) -> pd.DataFrame:
-    player_or_team = player_or_team.lower()
     dataframes = []
 
     for season in seasons:
