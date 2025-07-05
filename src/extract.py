@@ -30,17 +30,19 @@ def extract_team_roster(seasons: list, team_id: int) -> pd.DataFrame:
     
     return pd.concat(objs=dataframes, ignore_index=True)
 
-def extract_shot_locations(seasons: list, player_or_team: str, season_type_all_star: str) -> pd.DataFrame:
+def extract_shot_locations(season: str, player_or_team: str, 
+                           season_type_all_star: str = "Regular Season") -> pd.DataFrame:
+    
+    if player_or_team.lower() == "player":
+        df = ep.LeagueDashPlayerShotLocations(season=season, 
+        season_type_all_star=season_type_all_star).get_data_frames()[0]
+    
+    elif player_or_team.lower() == "team":
+        df = ep.LeagueDashTeamShotLocations(season=season,
+        season_type_all_star=season_type_all_star).get_data_frames()[0]
 
-    for season in seasons:
-        if player_or_team == "player":
-            df = ep.LeagueDashPlayerShotLocations(season=season, 
-            season_type_all_star=season_type_all_star).get_data_frames()[0]
-        
-        elif player_or_team == "team":
-            df = ep.LeagueDashTeamShotLocations(season=season,
-            season_type_all_star=season_type_all_star).get_data_frames()[0]
+    else:
+        logger.error(f"Incorrect value for player_or_team parameter in extract_shot_locations", exc_info= True)
+        raise ValueError
 
-        else:
-            logger.error(f"Incorrect value for player_or_team parameter in extract_shot_locations", exc_info= True)
-            raise ValueError
+    return df
