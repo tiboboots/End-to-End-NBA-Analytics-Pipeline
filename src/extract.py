@@ -1,6 +1,5 @@
 import logging
 import nba_api.stats.endpoints as ep
-import pandas as pd
 
 logger = logging.getLogger(__name__)
 
