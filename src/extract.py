@@ -4,21 +4,14 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-def extract_game_logs(season: str, player_or_team_abbreviation: str, 
-                      season_type_all_star: str) -> pd.DataFrame:
-
-    season_player_games = ep.LeagueGameLog(season=season, 
-    player_or_team_abbreviation=player_or_team_abbreviation,
+def extract_game_logs(season: str, player_or_team_abbreviation: str, season_type_all_star: str) -> pd.DataFrame:
+    return ep.LeagueGameLog(season=season, player_or_team_abbreviation=player_or_team_abbreviation,
     season_type_all_star=season_type_all_star).get_dict()
 
-    return season_player_games
 
 def extract_team_roster(season: str, team_id: int) -> pd.DataFrame:
-        
-    season_team_roster = ep.CommonTeamRoster(team_id=team_id, 
-    season=season).get_dict()
-    
-    return season_team_roster
+    return ep.CommonTeamRoster(team_id=team_id, season=season).get_dict()
+
 
 def extract_shot_locations(season: str, player_or_team: str, 
                            season_type_all_star: str = "Regular Season") -> pd.DataFrame:
