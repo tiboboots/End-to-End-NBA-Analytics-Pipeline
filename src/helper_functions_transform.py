@@ -26,11 +26,11 @@ def shotzones_flat_df(shot_locations: dict, df: pd.DataFrame):
 
 def shotzones_pivot_df(player_data_columns: list , df_flat:pd.DataFrame):
 
-    df_long = df_flat.melt(id_vars=player_data_columns, var_name="shot_category", value_name="shot_value")
+    df_long = df_flat.melt(id_vars=player_data_columns, var_name="shot_location", value_name="shot_value")
 
-    df_long[['shot_category', 'shot_type']] = df_long['shot_category'].str.split("_", n=1 , expand=True)
+    df_long[['shot_location', 'shot_type']] = df_long['shot_location'].str.split("_", n=1 , expand=True)
 
-    shot_locations_df = df_long.pivot(index=player_data_columns + ['shot_category'],
+    shot_locations_df = df_long.pivot(index=player_data_columns + ['shot_location'],
                             columns='shot_type',
                             values='shot_value').reset_index()
     
