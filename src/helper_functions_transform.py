@@ -1,12 +1,14 @@
 import pandas as pd
+from decorators import log
 
+@log
 def shotlocations_to_df(shot_locations: dict):
     headers = shot_locations['resultSets']['headers']
 
     df = pd.DataFrame(data=headers).explode(column="columnNames", ignore_index=True).drop_duplicates()
     return df
 
-
+@log
 def shotlocations_combine_columns(shot_locations: dict, df: pd.DataFrame):
     rows = shot_locations['resultSets']['rowSet']
 
@@ -23,7 +25,7 @@ def shotlocations_combine_columns(shot_locations: dict, df: pd.DataFrame):
 
     return player_data_columns, df_flat
 
-
+@log
 def shotlocations_pivot_df(player_data_columns: list , df_flat:pd.DataFrame):
 
     df_long = df_flat.melt(id_vars=player_data_columns, var_name="shot_location", value_name="shot_value")
