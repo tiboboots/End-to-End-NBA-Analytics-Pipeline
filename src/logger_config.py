@@ -28,4 +28,6 @@ def setup_logger():
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
+    logging.getLogger('urllib3').setLevel("CRITICAL")
+
     return logger
