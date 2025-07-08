@@ -22,7 +22,7 @@ def setup_logger():
     console_handler.setFormatter(fmt=console_formatter)
 
     logger.setLevel("DEBUG")
-    console_handler.setLevel("WARNING")
+    console_handler.setLevel("INFO")
     file_handler.setLevel("DEBUG")
     
     logger.addHandler(console_handler)
