@@ -15,7 +15,7 @@ def setup_logger():
     console_formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}",
                                   style="{", datefmt="%Y-%m-%d %H:%M")
     
-    file_formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}\n{exc_info}",
+    file_formatter = logging.Formatter("{asctime} - {name} - {levelname} - {message}",
                                   style="{", datefmt="%Y-%m-%d %H:%M")
     
     file_handler.setFormatter(fmt=file_formatter)
