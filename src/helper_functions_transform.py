@@ -1,13 +1,13 @@
 import pandas as pd
 
-def shotzones_df(shot_locations: dict):
+def shotlocations_to_df(shot_locations: dict):
     headers = shot_locations['resultSets']['headers']
 
     df = pd.DataFrame(data=headers).explode(column="columnNames", ignore_index=True).drop_duplicates()
     return df
 
 
-def shotzones_flat_df(shot_locations: dict, df: pd.DataFrame):
+def shotlocations_combine_columns(shot_locations: dict, df: pd.DataFrame):
     rows = shot_locations['resultSets']['rowSet']
 
     shot_zone_columns = df.loc[df['name'] == 'SHOT_CATEGORY', 'columnNames']
@@ -24,7 +24,7 @@ def shotzones_flat_df(shot_locations: dict, df: pd.DataFrame):
     return player_data_columns, df_flat
 
 
-def shotzones_pivot_df(player_data_columns: list , df_flat:pd.DataFrame):
+def shotlocations_pivot_df(player_data_columns: list , df_flat:pd.DataFrame):
 
     df_long = df_flat.melt(id_vars=player_data_columns, var_name="shot_location", value_name="shot_value")
 
