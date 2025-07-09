@@ -1,6 +1,7 @@
 import logging
 import nba_api.stats.endpoints as ep
 from decorators import log
+from nba_api.stats.static import teams
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +15,9 @@ def extract_game_logs(season: str, player_or_team_abbreviation: str,
 
 
 @log()
-def extract_team_roster(season: str, team_id: int) -> dict:
+def extract_team_roster(season: str, full_team_name: str) -> dict:
+
+    team_id = teams.find_teams_by_full_name(full_team_name)[0]['id']
     return ep.CommonTeamRoster(team_id=team_id, season=season).get_dict()
 
 
