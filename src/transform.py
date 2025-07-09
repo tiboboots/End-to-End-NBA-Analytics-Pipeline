@@ -38,4 +38,6 @@ def transform_team_roster(team_roster: dict):
 
     df = df.drop(['LeagueID', 'PLAYER_SLUG'], axis=1)
 
+    df['BIRTH_DATE'] = pd.to_datetime(df['BIRTH_DATE'], format="%b %d, %Y")
+
     return df
