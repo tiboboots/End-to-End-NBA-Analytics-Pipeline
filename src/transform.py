@@ -4,7 +4,7 @@ from decorators import log
 
 logger = logging.getLogger(__name__)
 
-@log
+
 def transform_shot_locations(shot_locations: dict):
     df = hp.shotlocations_to_df(shot_locations=shot_locations)
 
