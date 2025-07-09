@@ -2,11 +2,11 @@ import functools
 import logging
 import pandas as pd
 
-logger = logging.getLogger(__name__)
 
 def log(func):
     @functools.wraps(func)
     def wrapper_func(*args, **kwargs):
+        logger = logging.getLogger(func.__module__)
         try:
             logger.info(f"Running {func.__name__}\n")
             output = func(*args, **kwargs)
