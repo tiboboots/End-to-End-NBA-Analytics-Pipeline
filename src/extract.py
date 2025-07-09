@@ -3,7 +3,9 @@ import nba_api.stats.endpoints as ep
 
 logger = logging.getLogger(__name__)
 
-def extract_game_logs(season: str, player_or_team_abbreviation: str, season_type_all_star: str) -> dict:
+def extract_game_logs(season: str, player_or_team_abbreviation: str, 
+                      season_type_all_star: str = "Regular Season") -> dict:
+    
     return ep.LeagueGameLog(season=season, player_or_team_abbreviation=player_or_team_abbreviation,
     season_type_all_star=season_type_all_star).get_dict()
 
