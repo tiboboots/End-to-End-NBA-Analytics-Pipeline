@@ -28,3 +28,14 @@ def transform_game_logs(game_logs: dict):
         df = df.drop(cols_to_drop, axis=1)
 
     return df
+
+@log()
+def transform_team_roster(team_roster: dict):
+    team_roster_columns = team_roster['resultSets'][0]['headers']
+    team_roster_rows = team_roster['resultSets'][0]['rowSet']
+
+    df = pd.DataFrame(data=team_roster_rows, columns=team_roster_columns)
+
+    df = df.drop(['LeagueID', 'PLAYER_SLUG'], axis=1)
+
+    return df
