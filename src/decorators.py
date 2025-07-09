@@ -40,7 +40,7 @@ def log(debug_logs: bool = False):
                     return output
                 
                 except Exception as e:
-                    logger.error(f"Error in {func.__name__}: {e}\n")
+                    logger.exception(f"Error in {func.__name__}: {e}\n")
                     raise
 
             return wrapper_func
