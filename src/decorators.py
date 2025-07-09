@@ -1,7 +1,6 @@
 import functools
 import logging
 import pandas as pd
-from itertools import islice
 
 def debug(func, output, logger):
     if isinstance(output, pd.DataFrame):
