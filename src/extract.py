@@ -1,8 +1,10 @@
 import logging
 import nba_api.stats.endpoints as ep
+from decorators import log
 
 logger = logging.getLogger(__name__)
 
+@log()
 def extract_game_logs(season: str, player_or_team_abbreviation: str, 
                       season_type_all_star: str = "Regular Season") -> dict:
     
@@ -11,10 +13,12 @@ def extract_game_logs(season: str, player_or_team_abbreviation: str,
                             season_type_all_star=season_type_all_star).get_dict()
 
 
+@log()
 def extract_team_roster(season: str, team_id: int) -> dict:
     return ep.CommonTeamRoster(team_id=team_id, season=season).get_dict()
 
 
+@log()
 def extract_shot_locations(season: str, player_or_team: str, 
                            season_type_all_star: str = "Regular Season") -> dict:
     
@@ -28,7 +32,8 @@ def extract_shot_locations(season: str, player_or_team: str,
         logger.error(f"Incorrect value for player_or_team parameter in extract_shot_locations", exc_info= True)
         raise ValueError
     
-
+    
+@log()
 def extract_box_scores(game_id: str, box_score_type: str) -> dict:
 
     endpoints = {"traditional": ep.BoxScoreTraditionalV3,
