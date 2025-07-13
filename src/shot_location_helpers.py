@@ -14,25 +14,25 @@ def shotlocations_combine_columns(shot_locations: dict, df: pd.DataFrame):
 
     shot_zone_columns = df.loc[df['name'] == 'SHOT_CATEGORY', 'columnNames']
 
-    player_data_columns = df.loc[(~ df['columnNames'].str.contains('FG')) 
+    metadata_columns = df.loc[(~ df['columnNames'].str.contains('FG')) 
                         & (df['name'] != 'SHOT_CATEGORY'), 'columnNames'].to_list()
 
     field_goal_columns = df.loc[df['columnNames'].str.contains('FG'), 'columnNames']
 
     fg_shot_zones = [f"{zone}_{fg}" for zone in shot_zone_columns for fg in field_goal_columns]
 
-    df_flat = pd.DataFrame(data=rows, columns=player_data_columns+fg_shot_zones)
+    df_flat = pd.DataFrame(data=rows, columns=metadata_columns+fg_shot_zones)
 
-    return player_data_columns, df_flat
+    return metadata_columns, df_flat
 
 @log()
-def shotlocations_pivot_df(player_data_columns: list , df_flat:pd.DataFrame):
+def shotlocations_pivot_df(metadata_columns: list , df_flat:pd.DataFrame):
 
-    df_long = df_flat.melt(id_vars=player_data_columns, var_name="shot_location", value_name="shot_value")
+    df_long = df_flat.melt(id_vars=metadata_columns, var_name="shot_location", value_name="shot_value")
 
     df_long[['shot_location', 'shot_type']] = df_long['shot_location'].str.split("_", n=1 , expand=True)
 
-    shot_locations_df = df_long.pivot(index=player_data_columns + ['shot_location'],
+    shot_locations_df = df_long.pivot(index=metadata_columns + ['shot_location'],
                             columns='shot_type',
                             values='shot_value').reset_index()
     

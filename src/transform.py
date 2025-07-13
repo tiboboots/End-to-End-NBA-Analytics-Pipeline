@@ -9,9 +9,9 @@ logger = logging.getLogger(__name__)
 def transform_shot_locations(shot_locations: dict):
     df = slh.shotlocations_to_df(shot_locations=shot_locations)
 
-    player_data_columns, df_flat = slh.shotlocations_combine_columns(shot_locations=shot_locations, df=df)
+    metadata_columns, df_flat = slh.shotlocations_combine_columns(shot_locations=shot_locations, df=df)
 
-    shot_locations_df = slh.shotlocations_pivot_df(player_data_columns=player_data_columns, df_flat=df_flat)
+    shot_locations_df = slh.shotlocations_pivot_df(metadata_columns=metadata_columns, df_flat=df_flat)
 
     return shot_locations_df
 
