@@ -24,8 +24,7 @@ def transform_game_logs(game_logs: dict):
 
     cols_to_drop = [col for col in df.columns if 'PCT' in col or col in ['FANTASY_PTS', 'VIDEO_AVAILABLE']]
 
-    if len(cols_to_drop) > 0:
-        df = df.drop(cols_to_drop, axis=1)
+    df = df.drop(cols_to_drop, axis=1)
 
     return df
 
