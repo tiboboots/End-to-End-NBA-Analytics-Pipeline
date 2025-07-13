@@ -40,8 +40,16 @@ def shotlocations_pivot_df(player_data_columns: list , df_flat:pd.DataFrame):
 
     fga = shot_locations_df['FGA']
 
-    shot_locations_df = shot_locations_df.drop(['FGA', 'FG_PCT'], axis=1)
+    if 'NICKNAME' in shot_locations_df.columns:
+        shot_locations_df = shot_locations_df.drop(['FGA', 'FG_PCT', 'NICKNAME'], axis=1)
+    else:
+        shot_locations_df = shot_locations_df.drop(['FGA', 'FG_PCT'], axis=1)
  
     shot_locations_df['FGA'] = fga
+    
+    if 'AGE' in shot_locations_df.columns:
+        shot_locations_df[['FGM', 'FGA', 'AGE']] = shot_locations_df[['FGM', 'FGA', 'AGE']].fillna(0.0).astype(int)
+    else:
+        shot_locations_df[['FGM', 'FGA']] = shot_locations_df[['FGM', 'FGA']].fillna(0.0).astype(int)
 
     return shot_locations_df
