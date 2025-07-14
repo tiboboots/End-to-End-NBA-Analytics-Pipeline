@@ -15,13 +15,6 @@ def extract_game_logs(season: str, player_or_team_abbreviation: str,
 
 
 @log()
-def extract_team_roster(season: str, full_team_name: str) -> dict:
-
-    team_id = teams.find_teams_by_full_name(full_team_name)[0]['id']
-    return ep.CommonTeamRoster(team_id=team_id, season=season).get_dict()
-
-
-@log()
 def extract_shot_locations(season: str, player_or_team: str, 
                            season_type_all_star: str = "Regular Season") -> dict:
     
