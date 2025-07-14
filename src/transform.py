@@ -39,11 +39,13 @@ def transform_lineups(lineups: dict) -> pd.DataFrame:
     lineups_df = pd.DataFrame(data=rows, columns=columns)
 
     cols_drop = lineups_df.columns[(lineups_df.columns.str.contains("PCT|RANK"))
-                                   |(lineups_df.columns == "GROUP_SET")]
+                                   |(lineups_df.columns.isin(["GROUP_SET", "GROUP_ID"]))]
     lineups_df = lineups_df.drop(cols_drop, axis=1)
 
     float_cols = lineups_df.select_dtypes(include='float64').columns
     lineups_df[float_cols] = lineups_df[float_cols].astype(int)
+
+    lineups_df = lineups_df.rename(columns={"GROUP_NAME": "LINEUP", "TEAM_ABBREVIATION": "TEAM_SHORT"})
 
     return lineups_df
 
