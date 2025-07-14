@@ -53,7 +53,8 @@ def transform_hustle_stats(hustle: dict):
 
     hustle_df = pd.DataFrame(data=rows, columns=columns)
 
-    cols_drop = [col for col in hustle_df.columns if "PCT" in col]
+    cols_drop = hustle_df.columns[(hustle_df.columns.str.contains("PCT|OFF|DEF|REBS|PTS"))
+                                  |(hustle_df.columns == "CONTESTED_SHOTS")]
     hustle_df = hustle_df.drop(cols_drop, axis=1) 
 
     return hustle_df
