@@ -63,7 +63,7 @@ def transform_hustle_stats(hustle: dict):
     float_cols = hustle_df.select_dtypes(include='float64').columns
     hustle_df[float_cols] = hustle_df[float_cols].astype(int)
 
-    hustle_df = hustle_df.rename(columns={"G": "GP", "MIN": "MP","TEAM_ABBREVIATION": "TEAM_SHORT"})
+    hustle_df = hustle_df.rename(columns={"G": "GAMES", "MIN": "MINUTES","TEAM_ABBREVIATION": "TEAM_SHORT"})
 
     return hustle_df
 
