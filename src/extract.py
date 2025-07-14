@@ -40,5 +40,6 @@ def extract_hustle_stats(season: str, player_or_team: str, season_type_all_star:
     elif player_or_team.lower() == "team":
         return ep.LeagueHustleStatsTeam(season=season, season_type_all_star=season_type_all_star).get_dict()
     else:
-        logger.error(f"Incorrect value: {player_or_team} provided for player_or_team param in {extract_hustle_stats.__name__} function")
+        logger.error(f"Incorrect value: {player_or_team} provided for player_or_team parameter"
+                     f"in {extract_hustle_stats.__name__} function")
         raise ValueError   
