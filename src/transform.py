@@ -45,3 +45,15 @@ def transform_lineups(lineups: dict) -> pd.DataFrame:
     lineups_df[float_cols] = lineups_df[float_cols].astype(int)
 
     return lineups_df
+
+@log()
+def transform_hustle_stats(hustle: dict):
+    columns = hustle['resultSets'][0]['headers']
+    rows = hustle['resultSets'][0]['rowSet']
+
+    hustle_df = pd.DataFrame(data=rows, columns=columns)
+
+    cols_drop = [col for col in hustle_df.columns if "PCT" in col]
+    hustle_df = hustle_df.drop(cols_drop, axis=1) 
+
+    return hustle_df
