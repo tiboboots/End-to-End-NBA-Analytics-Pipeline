@@ -15,19 +15,20 @@ def transform_shot_locations(shot_locations: dict):
 
     return shot_locations_df
 
+
 @log()
 def transform_game_logs(game_logs: dict):
-    game_log_columns = game_logs['resultSets'][0]['headers']
-    game_log_rows = game_logs['resultSets'][0]['rowSet']
+    columns = game_logs['resultSets'][0]['headers']
+    rows = game_logs['resultSets'][0]['rowSet']
 
-    df = pd.DataFrame(data=game_log_rows, columns=game_log_columns)
+    game_logs_df = pd.DataFrame(data=rows, columns=columns)
 
-    cols_to_drop = [col for col in df.columns if 'PCT' in col 
+    cols_to_drop = [col for col in game_logs_df.columns if 'PCT' in col 
                     or col in ['FANTASY_PTS', 'VIDEO_AVAILABLE', 'GAME_ID']]
+    
+    game_logs_df = game_logs_df.drop(cols_to_drop, axis=1)
 
-    df = df.drop(cols_to_drop, axis=1)
-
-    return df
+    return game_logs_df
 
 
 @log()
