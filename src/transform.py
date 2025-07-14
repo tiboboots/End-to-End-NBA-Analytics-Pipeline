@@ -45,7 +45,7 @@ def transform_lineups(lineups: dict) -> pd.DataFrame:
     lineups_df[float_cols] = lineups_df[float_cols].astype(int)
 
     lineups_df = lineups_df.rename(columns={"GROUP_NAME": "LINEUP", "TEAM_ABBREVIATION": "TEAM_SHORT",
-                                            "GP": "GAMES", "MIN": "MINUTES"})
+                                            "GP": "GAMES", "MIN": "MINUTES", "GROUP_ID": "PLAYER_IDS"})
 
     return lineups_df
 
