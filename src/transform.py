@@ -66,6 +66,7 @@ def transform_hustle_stats(hustle: dict):
 
     return hustle_df
 
+@log()
 def transform_player_clutch(clutch: tuple):
     clutch_period, clutch_dict = clutch
 
