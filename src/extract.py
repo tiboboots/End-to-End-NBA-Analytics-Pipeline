@@ -25,7 +25,8 @@ def extract_shot_locations(season: str, player_or_team: str,
         return ep.LeagueDashTeamShotLocations(season=season,season_type_all_star=season_type_all_star).get_dict()
 
     else:
-        logger.error(f"Incorrect value for player_or_team parameter in extract_shot_locations", exc_info= True)
+        logger.error(f"Incorrect value {player_or_team} for player_or_team parameter"
+                     f"in {extract_shot_locations.__name__} function")
         raise ValueError
 
 @log()
