@@ -50,5 +50,5 @@ def extract_player_clutch(season: str,
                           season_type_all_star: str = "Regular Season", 
                           clutch_time: str = "Last 5 Minutes"):
     
-    return ep.LeagueDashPlayerClutch(clutch_time=clutch_time, season=season, 
+    return clutch_time, ep.LeagueDashPlayerClutch(clutch_time=clutch_time, season=season, 
                                      season_type_all_star=season_type_all_star).get_dict()
