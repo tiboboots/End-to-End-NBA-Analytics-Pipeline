@@ -5,7 +5,7 @@ from nba_api.stats.static import teams
 
 logger = logging.getLogger(__name__)
 
-@log()
+@log
 def extract_game_logs(season: str, player_or_team_abbreviation: str, 
                       season_type_all_star: str = "Regular Season") -> dict:
     
@@ -14,7 +14,7 @@ def extract_game_logs(season: str, player_or_team_abbreviation: str,
                             season_type_all_star=season_type_all_star).get_dict()
 
 
-@log()
+@log
 def extract_shot_locations(season: str, player_or_team: str, 
                            season_type_all_star: str = "Regular Season") -> dict:
     
@@ -29,11 +29,11 @@ def extract_shot_locations(season: str, player_or_team: str,
                      f"in {extract_shot_locations.__name__} function")
         raise ValueError
 
-@log()
+@log
 def extract_lineups(season: str, season_type_all_star: str = "Regular Season"):
     return ep.LeagueDashLineups(season=season, season_type_all_star=season_type_all_star).get_dict()
 
-@log()
+@log
 def extract_hustle_stats(season: str, player_or_team: str, season_type_all_star: str = "Regular Season"):
     if player_or_team.lower() == "player":
         return ep.LeagueHustleStatsPlayer(season=season, season_type_all_star=season_type_all_star).get_dict()
@@ -45,7 +45,7 @@ def extract_hustle_stats(season: str, player_or_team: str, season_type_all_star:
         raise ValueError   
     
 
-@log()
+@log
 def extract_player_clutch(season: str, 
                           season_type_all_star: str = "Regular Season", 
                           clutch_time: str = "Last 5 Minutes"):

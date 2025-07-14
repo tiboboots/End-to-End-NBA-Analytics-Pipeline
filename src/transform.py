@@ -16,7 +16,7 @@ def transform_shot_locations(shot_locations: dict):
     return shot_locations_df
 
 
-@log()
+@log
 def transform_game_logs(game_logs: dict):
     columns = game_logs['resultSets'][0]['headers']
     rows = game_logs['resultSets'][0]['rowSet']
@@ -30,7 +30,7 @@ def transform_game_logs(game_logs: dict):
     return game_logs_df
 
 
-@log()
+@log
 def transform_lineups(lineups: dict) -> pd.DataFrame:
     columns = lineups['resultSets'][0]['headers']
     rows = lineups['resultSets'][0]['rowSet']
@@ -48,7 +48,7 @@ def transform_lineups(lineups: dict) -> pd.DataFrame:
 
     return lineups_df
 
-@log()
+@log
 def transform_hustle_stats(hustle: dict):
     columns = hustle['resultSets'][0]['headers']
     rows = hustle['resultSets'][0]['rowSet']
@@ -66,7 +66,7 @@ def transform_hustle_stats(hustle: dict):
 
     return hustle_df
 
-@log()
+@log
 def transform_player_clutch(clutch: tuple):
     clutch_period, clutch_dict = clutch
 
