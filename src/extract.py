@@ -43,3 +43,12 @@ def extract_hustle_stats(season: str, player_or_team: str, season_type_all_star:
         logger.error(f"Incorrect value: {player_or_team} provided for player_or_team parameter"
                      f"in {extract_hustle_stats.__name__} function")
         raise ValueError   
+    
+
+@log()
+def extract_player_clutch(season: str, 
+                          season_type_all_star: str = "Regular Season", 
+                          clutch_time: str = "Last 5 Minutes"):
+    
+    return ep.LeagueDashPlayerClutch(clutch_time=clutch_time, season=season, 
+                                     season_type_all_star=season_type_all_star).get_dict()
