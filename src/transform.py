@@ -41,3 +41,18 @@ def transform_team_roster(team_roster: dict):
     df['BIRTH_DATE'] = pd.to_datetime(df['BIRTH_DATE'], format="%b %d, %Y")
 
     return df
+
+@log()
+def transform_lineups(lineups: dict) -> pd.DataFrame:
+    columns = lineups['resultSets'][0]['headers']
+    rows = lineups['resultSets'][0]['rowSet']
+
+    lineups_df = pd.DataFrame(data=rows, columns=columns)
+
+    cols_drop = [col for col in lineups_df.columns if 'RANK' in col or 'PCT' in col or col == 'GROUP_SET']
+    df = lineups_df.drop(cols_drop, axis=1)
+
+    float_cols = lineups_df.select_dtypes(include='float64').columns
+    lineups_df[float_cols] = lineups_df[float_cols].astype(int)
+
+    return lineups_df
