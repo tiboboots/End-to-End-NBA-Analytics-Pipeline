@@ -34,3 +34,7 @@ def extract_shot_locations(season: str, player_or_team: str,
     else:
         logger.error(f"Incorrect value for player_or_team parameter in extract_shot_locations", exc_info= True)
         raise ValueError
+
+@log()
+def extract_lineups(season: str, season_type_all_star: str = "Regular Season"):
+    return ep.LeagueDashLineups(season=season, season_type_all_star=season_type_all_star).get_dict()
