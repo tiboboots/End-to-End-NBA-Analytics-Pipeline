@@ -23,10 +23,9 @@ def transform_game_logs(game_logs: dict):
 
     game_logs_df = pd.DataFrame(data=rows, columns=columns)
 
-    cols_to_drop = [col for col in game_logs_df.columns if 'PCT' in col 
-                    or col in ['FANTASY_PTS', 'VIDEO_AVAILABLE', 'GAME_ID']]
-    
-    game_logs_df = game_logs_df.drop(cols_to_drop, axis=1)
+    cols_drop = game_logs_df.columns[(game_logs_df.columns.str.contains("PCT|FANTASY|VIDEO|GAME_ID"))
+                                     |(game_logs_df.columns == "REB")]
+    game_logs_df = game_logs_df.drop(cols_drop, axis=1)
 
     return game_logs_df
 
