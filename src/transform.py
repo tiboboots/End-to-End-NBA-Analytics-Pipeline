@@ -38,7 +38,8 @@ def transform_lineups(lineups: dict) -> pd.DataFrame:
 
     lineups_df = pd.DataFrame(data=rows, columns=columns)
 
-    cols_drop = [col for col in lineups_df.columns if 'RANK' in col or 'PCT' in col or col == 'GROUP_SET']
+    cols_drop = lineups_df.columns[(lineups_df.columns.str.contains("PCT|RANK"))
+                                   |(lineups_df.columns == "GROUP_SET")]
     lineups_df = lineups_df.drop(cols_drop, axis=1)
 
     float_cols = lineups_df.select_dtypes(include='float64').columns
