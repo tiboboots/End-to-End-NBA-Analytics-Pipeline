@@ -64,3 +64,25 @@ def transform_hustle_stats(hustle: dict):
     hustle_df = hustle_df.rename(columns={"G": "GP", "MIN": "MP","TEAM_ABBREVIATION": "TEAM_SHORT"})
 
     return hustle_df
+
+def transform_player_clutch(clutch: tuple):
+    clutch_period, clutch_dict = clutch
+
+    columns = clutch_dict['resultSets'][0]['headers']
+    rows = clutch_dict['resultSets'][0]['rowSet']
+
+    clutch_df = pd.DataFrame(data=rows, columns=columns)
+
+    cols_drop = clutch_df.columns[(clutch_df.columns.str.contains("RANK|PCT|FANTASY")) 
+                                  |(clutch_df.columns.isin(["DD2", "TD3", "BLKA", "GROUP_SET", "REB", "NICKNAME"]))]
+    
+    floats_cols = clutch_df.select_dtypes(include='float64').columns
+    clutch_df[floats_cols] = clutch_df[floats_cols].astype(int)
+    
+    clutch_df = clutch_df.drop(cols_drop, axis=1)
+
+    clutch_df = clutch_df.rename(columns={"TEAM_ABBREVIATION": "TEAM_SHORT", "MIN": "MINUTES", "GP": "GAMES"})
+
+    clutch_df.insert(9, 'CLUTCH_PERIOD', clutch_period)
+
+    return clutch_df
