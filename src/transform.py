@@ -57,4 +57,7 @@ def transform_hustle_stats(hustle: dict):
                                   |(hustle_df.columns == "CONTESTED_SHOTS")]
     hustle_df = hustle_df.drop(cols_drop, axis=1) 
 
+    float_cols = hustle_df.select_dtypes(include='float64').columns
+    hustle_df[float_cols] = hustle_df[float_cols].astype(int)
+
     return hustle_df
